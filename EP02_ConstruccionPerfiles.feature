@@ -1,19 +1,23 @@
-Feature: Construcción y optimización de perfiles
-  Como estudiante
-  Quiero registrar y optimizar mi experiencia académica
-  Para obtener un currículo profesional automáticamente
+Feature: EP02 - Construccion y optimizacion de perfiles ATS
 
-  Scenario: El sistema arma el currículo automáticamente (Relacionado a HU02)
-    Given que el estudiante inició sesión y está en el formulario de proyectos
-    When escribe su experiencia universitaria y presiona el botón "Generar Currículo"
-    Then la plataforma usa inteligencia artificial para identificar sus conocimientos y le muestra un currículo profesional.
+  Scenario Outline: HU02 - Validar el ingreso de proyectos para generar el curriculo
+    Given que el postulante esta en el formulario de proyectos
+    When ingresa el Titulo <Titulo>
+    And ingresa la Descripcion <Descripcion>
+    And el usuario envia el formulario
+    Then el sistema procesa los datos con Inteligencia Artificial
+    And muestra el curriculo en formato ATS
+    Examples:
+      | Titulo | Descripcion |
+      | "App de Ventas" | "Desarrollado con Python y React" |
+      | "Base de Datos" | "Estructuracion en SQL Server" |
 
-  Scenario: El estudiante visualiza en qué es bueno (Relacionado a HU03)
-    Given que el sistema terminó de armar el currículo
-    When el estudiante entra a la sección "Mis Fortalezas"
-    Then la plataforma le muestra una lista clara con las habilidades tecnológicas que reconoció de sus proyectos.
+  Scenario: HU03 - Visualizar fortalezas profesionales validadas
+    Given que el sistema termino de analizar el perfil del postulante
+    When el postulante ingresa a la seccion de sus fortalezas
+    Then el sistema muestra una lista con las habilidades tecnicas y blandas detectadas
 
-  Scenario: El estudiante descarga su currículo para postular (Relacionado a HU04)
-    Given que el estudiante está viendo su nuevo currículo en pantalla
-    When presiona el botón "Descargar en PDF"
-    Then la plataforma le entrega inmediatamente su currículo en un archivo PDF ordenado.
+  Scenario: HU04 - Exportar curriculo optimizado en PDF
+    Given que el sistema muestra la vista previa del curriculo
+    When el postulante hace clic en el boton de exportar a PDF
+    Then el sistema descarga automaticamente el archivo conservando el formato ATS
